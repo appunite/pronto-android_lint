@@ -24,6 +24,8 @@ module Pronto
             message: create_message(issue)
           }
         end
+      rescue => e
+        raise "Error while parsing file: #{@path}\n#{e.message}"
       end
 
       private

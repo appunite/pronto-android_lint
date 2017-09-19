@@ -7,36 +7,20 @@ RSpec.describe Pronto::AndroidLint::OutputParser do
 
   describe "#parse" do
     subject { parser.parse }
-    before { ENV["PRONTO_ANDROID_LINT_PATH_SHIFT"]="3" }
+    let(:path) { "#{Pathname.pwd}/spec/fixtures/lint-results.xml" }
 
-    context "when xml is valid" do
-      let(:path) { "#{Pathname.pwd}/spec/fixtures/lint-results.xml" }
-
-      it "parses output" do
-        expect(subject.first[:path]).to eq("/builds/user/project/app/src/main/res/values/strings.xml")
-        expect(subject.first[:line]).to eq(4)
-        expect(subject.first[:level]).to eq(:warning)
-      end
+    it "parses every location" do
+      expect(subject.count).to eq(3)
     end
 
-    context "when issue contains multiple locations" do
-      let(:path) { "#{Pathname.pwd}/spec/fixtures/multiple_locations.xml" }
-
-      it "parses output" do
-        expect(subject.count).to eq(2)
-        expect(subject.first[:path]).to eq("/builds/user/project/app/src/main/res/values/strings.xml")
-        expect(subject.first[:line]).to eq(4)
-        expect(subject.last[:path]).to eq("/builds/user/project/app/src/main/res/values/other.xml")
-        expect(subject.last[:line]).to eq(18)
-      end
+    it "parses path and line" do
+      expect(subject[0][:path]).to eq("/builds/user/project/app/src/main/res/values/first.xml")
+      expect(subject[0][:line]).to eq(4)
     end
 
-    context "when xml is invalid" do
-      let(:path) { "#{Pathname.pwd}/spec/fixtures/invalid_format.xml" }
-
-      it "raises" do
-        expect{ subject }.to raise_error(RuntimeError, /Error while parsing file: #{path}\n/)
-      end
+    it "sets 0 as line when value is missing" do
+      expect(subject[2][:path]).to eq("/builds/user/project/app/src/main/res/values/third.xml")
+      expect(subject[2][:line]).to eq(0)
     end
   end
 end

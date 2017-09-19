@@ -1,3 +1,4 @@
+require 'active_support/core_ext/object/try'
 require 'nokogiri'
 
 module Pronto
@@ -19,8 +20,8 @@ module Pronto
         lint_result.xpath("//issue").flat_map do |issue|
           issue.xpath(".//location").map do |location|
             {
-              path: location.attribute("file").value,
-              line: location.attribute("line").value.to_i,
+              path: location.attribute("file").try(:value),
+              line: location.attribute("line").try(:value).to_i,
               level: TYPE_WARNINGS[issue.attribute("severity").value],
               message: create_message(issue)
             }
@@ -32,9 +33,9 @@ module Pronto
 
       private
       def create_message(issue)
-        "#{issue.attribute("summary").value}\n\n#{issue.attribute("message").value}
+        "#{issue.attribute("summary").try(:value)}\n\n#{issue.attribute("message").try(:value)}
 
-        #{issue.attribute("explanation").value}"
+        #{issue.attribute("explanation").try(:value)}"
       end
     end
   end

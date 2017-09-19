@@ -12,8 +12,14 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         quickfix="studio">
         <location
-            file="/builds/user/project/app/src/main/res/values/strings.xml"
+            file="/builds/user/project/app/src/main/res/values/first.xml"
             line="4"
             column="13"/>
+        <location
+            file="/builds/user/project/app/src/main/res/values/second.xml"
+            line="18"
+            column="13"/>
+        <location
+            file="/builds/user/project/app/src/main/res/values/third.xml"/>
     </issue>
 </issues>

@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Pronto::AndroidLint::VERSION
   spec.authors       = ["Tobiasz Małecki"]
   spec.email         = ["tobiasz.malecki@appunite.com"]
-  spec.homepage      = "https://git.appunite.com/tobiasz/pronto-android"
+  spec.homepage      = "https://github.com/appunite/pronto-android_lint"
 
   spec.summary       = "Pronto runner for android lint"
   spec.license       = "MIT"

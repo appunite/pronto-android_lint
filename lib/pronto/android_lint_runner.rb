@@ -25,7 +25,7 @@ module Pronto
 
       messages = []
 
-      offences.select { |offence| offence[:path] == patch_path }
+      offences.select { |offence| offence[:path].end_with?(patch_path) }
         .each do |offence|
           messages += patch.added_lines
             .select { |line| line.new_lineno == offence[:line] }

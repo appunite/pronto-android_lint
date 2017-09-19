@@ -19,7 +19,7 @@ module Pronto
         lint_result.xpath("//issue").flat_map do |issue|
           issue.xpath(".//location").map do |location|
             {
-              path: parse_path(location.attribute("file").value),
+              path: location.attribute("file").value,
               line: location.attribute("line").value.to_i,
               level: TYPE_WARNINGS[issue.attribute("severity").value],
               message: create_message(issue)
@@ -31,15 +31,6 @@ module Pronto
       end
 
       private
-      # removed `/builds/group/project/` from path
-      # to match pronto patch path
-      def parse_path(path)
-        path.split("/")
-          .reject(&:empty?)
-          .drop(ENV["PRONTO_ANDROID_LINT_PATH_SHIFT"].to_i)
-          .join("/")
-      end
-
       def create_message(issue)
         "#{issue.attribute("summary").value}\n\n#{issue.attribute("message").value}
 

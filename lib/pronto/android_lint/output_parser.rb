@@ -16,13 +16,15 @@ module Pronto
 
       def parse
         lint_result = File.open(@path) { |f| Nokogiri::XML(f) }
-        lint_result.xpath("//issue").map do |issue|
-          {
-            path: parse_path(issue.xpath(".//location").attribute("file").value),
-            line: issue.xpath(".//location").attribute("line").value.to_i,
-            level: TYPE_WARNINGS[issue.attribute("severity").value],
-            message: create_message(issue)
-          }
+        lint_result.xpath("//issue").flat_map do |issue|
+          issue.xpath(".//location").map do |location|
+            {
+              path: parse_path(location.attribute("file").value),
+              line: location.attribute("line").value.to_i,
+              level: TYPE_WARNINGS[issue.attribute("severity").value],
+              message: create_message(issue)
+            }
+          end
         end
       rescue => e
         raise "Error while parsing file: #{@path}\n#{e.message}"

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="4" by="lint 2.3.3">
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.app_unused_string_resource` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds."
+        errorLine1="    &lt;string name=&quot;app_unused_string_resource&quot;>Unused should cause lint warning&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+        quickfix="studio">
+        <location
+            file="/builds/user/project/app/src/main/res/values/strings.xml"
+            line="4"
+            column="13"/>
+    </issue>
+</issues>

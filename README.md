@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/appunite/pronto-android_lint.svg?branch=master)](https://travis-ci.org/appunite/pronto-android_lint)
+[![Gem Version](https://badge.fury.io/rb/pronto-android_lint.svg)](https://badge.fury.io/rb/pronto-android_lint)
 
 # Pronto::AndroidLint
 

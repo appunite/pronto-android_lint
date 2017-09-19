@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/appunite/pronto-android_lint.svg?branch=master)](https://travis-ci.org/appunite/pronto-android_lint)
+
 # Pronto::AndroidLint
 
 Pronto runner for android lint

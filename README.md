@@ -33,7 +33,7 @@ $ gem install pronto-android_lint
 pronto run
 ```
 
-For more details see [Pronto] readme
+For more details see [Pronto](https://github.com/prontolabs/pronto) readme
 
 ## License
 
